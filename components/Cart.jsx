@@ -11,7 +11,8 @@ import getStripe from '../lib/getStripe';
 
 const Cart = () => {
   const cartRef = useRef();
-  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove } = useStateContext();
+  const closeRef = useRef(null)
+  const { totalPrice, totalQuantities, cartItems, showCart, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
@@ -31,10 +32,16 @@ const Cart = () => {
     stripe.redirectToCheckout({ sessionId: data.id });
   }
 
+  const closeOpenMenus = (e)=>{
+    if(closeRef.current && showCart && !closeRef.current.contains(e.target)){
+      setShowCart(false)
+    }
+  }
+  document.addEventListener('mousedown',closeOpenMenus)
 
   return (
-    <div className="cart-wrapper" ref={cartRef}>
-      <div className="cart-container">
+    <div className="cart-wrapper" ref={cartRef} >
+      <div className="cart-container" ref={closeRef}>
         <button
         type="button"
         className="cart-heading"
@@ -72,11 +79,11 @@ const Cart = () => {
                 <div className="flex bottom">
                   <div>
                   <p className="quantity-desc">
-                    <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
+                    <span className="minus" onClick={() => toggleCartItemQuantity(item._id, 'dec') }>
                     <AiOutlineMinus />
                     </span>
                     <span className="num" onClick="">{item.quantity}</span>
-                    <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc') }><AiOutlinePlus /></span>
+                    <span className="plus" onClick={() => toggleCartItemQuantity(item._id, 'inc') }><AiOutlinePlus /></span>
                   </p>
                   </div>
                   <button
