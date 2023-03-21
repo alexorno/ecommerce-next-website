@@ -16,7 +16,7 @@ useEffect(() => {
     setCartItems([]);
     setTotalPrice(0);
     setTotalQuantities(0);
-}, [])
+})
 
   return (
     <>

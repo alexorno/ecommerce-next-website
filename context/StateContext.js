@@ -18,17 +18,23 @@ export const StateContext = ({ children }) => {
   let foundProduct;
   let index;
 
+  
+  
+
+  
+
   // useEffect(() => {
-  //   localStorage.setItem('cartItems', JSON.stringify(cartItems))
-  // },[cartItems])
+  //   const data = window.localStorage.getItem('cartItems');
+  //   if ( data !== null ) setCartItems(data);
+  //   console.log(data)
+  // },[]);
+
+
+
 
    const onAdd = (product, quantity) => {
 
     const checkProductInCart = cartItems.find((item) => item._id === product._id);
-    console.log(checkProductInCart)
-    
-    
-
     
     if(checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
@@ -45,12 +51,15 @@ export const StateContext = ({ children }) => {
       product.quantity = quantity;
       
       setCartItems([...cartItems, { ...product }]);
+
     }
 
     setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
     setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
     setQty(1)
     toast.success(`${qty} ${product.name} added to the cart.`);
+
+    // localStorage.setItem('cartItems', JSON.stringify(cartItems))
   } 
 
   const onRemove = (product) => {
@@ -60,6 +69,8 @@ export const StateContext = ({ children }) => {
     setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity)
     setTotalQuantities(prevTotalQuantities => prevTotalQuantities - foundProduct.quantity)
     setCartItems(newCartItems)
+
+
   }
 
   const toggleCartItemQuantity = (id,value) => {
@@ -93,6 +104,29 @@ export const StateContext = ({ children }) => {
     return prevQty - 1;
   });
   };
+
+
+    useEffect(() => {
+      if(cartItems.length !== 0){
+      // console.log(cartItems)
+          localStorage.setItem('cartItems', JSON.stringify(cartItems))
+          const data = localStorage.getItem('cartItems')
+          console.log('get item parse', JSON.parse(data))
+      }else{
+      }
+    },[cartItems])
+
+    useEffect(() => {
+      const data = localStorage.getItem('cartItems') || 0
+    for (let i = 0; i < 1; i++) {
+      console.log('get item parse', JSON.parse(data)[i])
+      onAdd(JSON.parse(data)[i], qty)
+      }
+      
+    }, [])
+
+  
+  
 
 
   return (
