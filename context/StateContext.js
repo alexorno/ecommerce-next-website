@@ -46,10 +46,8 @@ export const StateContext = ({ children }) => {
       
       setCartItems(updatedCartItems);
       
-
     } else {
       product.quantity = quantity;
-      
       setCartItems([...cartItems, { ...product }]);
 
     }
@@ -105,29 +103,25 @@ export const StateContext = ({ children }) => {
   });
   };
 
+  useEffect(() => {
+    if(cartItems.length !== 0){
+        localStorage.setItem('items', JSON.stringify(cartItems))
+        localStorage.setItem('itemsTotalPrice', JSON.stringify(totalPrice))
+        localStorage.setItem('itemsTotalQty', JSON.stringify(totalQuantities))
+    }
+  })
 
-    useEffect(() => {
-      if(cartItems.length !== 0){
-      // console.log(cartItems)
-          localStorage.setItem('cartItems', JSON.stringify(cartItems))
-          const data = localStorage.getItem('cartItems')
-          console.log('get item parse', JSON.parse(data))
-      }else{
-      }
-    },[cartItems])
-
-    useEffect(() => {
-      const data = localStorage.getItem('cartItems') || 0
-    for (let i = 0; i < 1; i++) {
-      console.log('get item parse', JSON.parse(data)[i])
-      onAdd(JSON.parse(data)[i], qty)
-      }
-      
-    }, [])
-
-  
-  
-
+  useEffect(() => {
+    if(localStorage.getItem('items')){
+    const data = localStorage.getItem('items')
+    const storageTotalPrice = localStorage.getItem('itemsTotalPrice')
+    const storageQty = localStorage.getItem('itemsTotalQty')
+    console.log('data', data)
+    setCartItems(JSON.parse(data))
+    setTotalPrice(JSON.parse(storageTotalPrice))
+    setTotalQuantities(JSON.parse(storageQty))
+    }
+  }, [])
 
   return (
     <Context.Provider

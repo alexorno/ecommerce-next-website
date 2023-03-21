@@ -7,12 +7,8 @@ import { useStateContext } from '../../context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
 
-console.log('product',product)
-
   const { image,name,details,price } = product;
-// console.log('jj',product)
   const [index,setIndex] = useState(0);
-
   const { decQty, incQty, qty, onAdd} = useStateContext();
 
 

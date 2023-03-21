@@ -38,7 +38,7 @@ const Cart = () => {
     }
   }
   document.addEventListener('mousedown',closeOpenMenus)
-
+  
   return (
     <div className="cart-wrapper" ref={cartRef} >
       <div className="cart-container" ref={closeRef}>
