@@ -1,0 +1,1 @@
+{"c":["pages/index","webpack"],"r":["pages/product/[slug]"],"m":["./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fproduct%2F%5Bslug%5D&absolutePagePath=%2FUsers%2Falex%2FDocuments%2FWeb%20Development%2FWeb%20Applications%2Fecommerce-nextjs-tutorial%2Fecommerce-next-website%2Fpages%2Fproduct%2F%5Bslug%5D.js!","./pages/product/[slug].js"]}

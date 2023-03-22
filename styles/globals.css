@@ -32,6 +32,28 @@ width: 100%;
   margin: 6px 18px;
   position: relative;
 }
+.product-button {
+	box-shadow: 4px 4px 14px -7px #276873;
+	background:linear-gradient(to bottom, #f70000 5%, #990000 100%);
+	background-color:#f70000;
+	border-radius:25px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:11px 32px;
+	text-decoration:none;
+  border-width: 0px;
+}
+.product-button:hover {
+	background:linear-gradient(to bottom, #990000 5%, #f70000 100%);
+	background-color:#990000;
+}
+.product-button:active {
+	position:relative;
+	top:1px;
+}
 .marquee-text{
   font-size: 29px;
   font-weight: 600;
@@ -135,12 +157,12 @@ width: 100%;
 
 .hero-banner-container{
   padding: 100px 40px;
-  background-color: #dcdcdc;
   border-radius: 15px;
   position: relative;
   height: 500px;
   line-height: 0.9; 
   width: 100%;
+background: linear-gradient(126deg, rgba(176,109,143,1) 0%, rgba(195,50,50,0.9150253851540616) 35%, rgba(255,184,205,0.9934567577030813) 100%);
 
 }
 .hero-banner-container .beats-solo{
@@ -221,7 +243,8 @@ text-align: end;
 }
 .footer-banner-container{
   padding: 5% 3.33%;
-  background-color: #f02d34;
+  background: rgb(255,76,76);
+  background: linear-gradient(168deg, rgba(255,76,76,1) 0%, rgba(205,68,134,0.9206276260504201) 48%, rgba(255,78,78,0.9934567577030813) 100%);
   border-radius: 15px;
   position: relative;
   height: 400px;

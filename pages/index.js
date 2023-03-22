@@ -4,6 +4,8 @@ import { client } from '../lib/client.js'
 
 
 const index = ({products, bannerData}) => {
+
+  const firstThreeElements = products.slice(0, 3)
   return (
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]}/>
@@ -17,8 +19,8 @@ const index = ({products, bannerData}) => {
       </div>
 
       <div className='products-container'>
-        {products?.map(
-          (product) => <Product key={product._id} product={product}/>
+        {firstThreeElements?.map((product) => 
+        <Product key={product._id} product={product}/>
         )}
       </div>
 

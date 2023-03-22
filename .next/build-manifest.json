@@ -30,11 +30,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/product/[slug]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/product/[slug].js"
-    ],
     "/productspage": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
