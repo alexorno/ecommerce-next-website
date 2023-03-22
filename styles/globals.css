@@ -641,6 +641,30 @@ margin-top: 160px;
 .product-max-qty{
   margin-top: 10px;
 }
+.products-page-container{
+  width: 80%;
+  margin: 0px auto;
+}
+.products-preferences{
+  height: 15vh;
+  display: flex;
+}
+.sort-select{
+  width: 20%;
+  height: 40px;
+  border-radius: 10px;
+  margin: auto 20px;
+  font-size: 1rem;
+}
+
+.products-list{
+margin-top: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+
 
 @media screen and (max-width:800px) {
   .hero-banner-container{

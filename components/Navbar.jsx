@@ -13,6 +13,9 @@ const {showCart, setShowCart, totalQuantities} = useStateContext();
       <p className='logo'>
         <Link href='/'>LOGO</Link>
       </p>
+      <button type='button' className='product-button'>
+        <Link href='/productspage'> Productss </Link>
+      </button>
       <button type='button' className='cart-icon' onClick={ () => setShowCart(true) } >
         <AiOutlineShopping />
         <span className='cart-item-qty'>{totalQuantities}</span>

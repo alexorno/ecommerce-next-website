@@ -6,6 +6,7 @@ import { Product } from '../../components';
 import { useStateContext } from '../../context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
+  console.log(product)
 
   const { image,name,details,price } = product;
   const [index,setIndex] = useState(0);
