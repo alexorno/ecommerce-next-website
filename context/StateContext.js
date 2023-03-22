@@ -116,7 +116,7 @@ export const StateContext = ({ children }) => {
     const data = localStorage.getItem('items')
     const storageTotalPrice = localStorage.getItem('itemsTotalPrice')
     const storageQty = localStorage.getItem('itemsTotalQty')
-    console.log('data', data)
+
     setCartItems(JSON.parse(data))
     setTotalPrice(JSON.parse(storageTotalPrice))
     setTotalQuantities(JSON.parse(storageQty))
