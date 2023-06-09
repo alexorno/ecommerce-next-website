@@ -37,14 +37,11 @@ export const StateContext = ({ children }) => {
     const checkProductInCart = cartItems.find((item) => item._id === product._id);
     
     if(checkProductInCart) {
-      const updatedCartItems = cartItems.map((cartProduct) => {
-        if(cartProduct._id === product._id) return {
-          ...cartProduct,
-          quantity: cartProduct.quantity + quantity
+      cartItems.map((cartProduct) => {
+        if(cartProduct._id === product._id) {
+          cartProduct.quantity = cartProduct.quantity + quantity
         }
       })
-      
-      setCartItems(updatedCartItems);
       
     } else {
       product.quantity = quantity;
@@ -72,20 +69,26 @@ export const StateContext = ({ children }) => {
   }
 
   const toggleCartItemQuantity = (id,value) => {
-    foundProduct = cartItems.find((item) => item._id === id)
-    index = cartItems.findIndex((product) => product._id === id)
-    const newCartItems = cartItems.filter((item) => item._id !== id)
-
+    const duplicateCartItems = [...cartItems];
+    console.log(cartItems)
     if(value === 'inc'){
-      setCartItems( [ ...newCartItems, { ...foundProduct, quantity: foundProduct.quantity + 1} ])
-      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price)
-      setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1)
-
+      duplicateCartItems.map(item => {
+        if(item._id === id){
+          item.quantity++;
+          setTotalPrice(prevTotalPrice => prevTotalPrice + item.price);
+          setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
+        }
+      })
     } else if (value === 'dec') {
+      const foundProduct = cartItems.find((item) => item._id === id);
         if(foundProduct.quantity > 1){
-          setCartItems( [ ...newCartItems, { ...foundProduct, quantity: foundProduct.quantity - 1} ])
-          setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price)
-          setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1)
+          duplicateCartItems.map(item => {
+            if(item._id === id){
+              item.quantity--;
+              setTotalPrice(prevTotalPrice => prevTotalPrice - item.price);
+              setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
+            }
+          })
       }
     }
 
