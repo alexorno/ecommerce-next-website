@@ -18,19 +18,6 @@ export const StateContext = ({ children }) => {
   let foundProduct;
   let index;
 
-  
-  
-
-  
-
-  // useEffect(() => {
-  //   const data = window.localStorage.getItem('cartItems');
-  //   if ( data !== null ) setCartItems(data);
-  //   console.log(data)
-  // },[]);
-
-
-
 
    const onAdd = (product, quantity) => {
 
@@ -53,8 +40,6 @@ export const StateContext = ({ children }) => {
     setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
     setQty(1)
     toast.success(`${qty} ${product.name} added to the cart.`);
-
-    // localStorage.setItem('cartItems', JSON.stringify(cartItems))
   } 
 
   const onRemove = (product) => {
@@ -107,24 +92,22 @@ export const StateContext = ({ children }) => {
   };
 
   useEffect(() => {
-    if(cartItems.length !== 0){
-        localStorage.setItem('items', JSON.stringify(cartItems))
-        localStorage.setItem('itemsTotalPrice', JSON.stringify(totalPrice))
-        localStorage.setItem('itemsTotalQty', JSON.stringify(totalQuantities))
-    }
-  })
-
-  useEffect(() => {
     if(localStorage.getItem('items')){
-    const data = localStorage.getItem('items')
-    const storageTotalPrice = localStorage.getItem('itemsTotalPrice')
-    const storageQty = localStorage.getItem('itemsTotalQty')
+      const data = localStorage.getItem('items')
+      const storageTotalPrice = localStorage.getItem('itemsTotalPrice')
+      const storageQty = localStorage.getItem('itemsTotalQty')
 
-    setCartItems(JSON.parse(data))
-    setTotalPrice(JSON.parse(storageTotalPrice))
-    setTotalQuantities(JSON.parse(storageQty))
+      setCartItems(JSON.parse(data))
+      setTotalPrice(JSON.parse(storageTotalPrice))
+      setTotalQuantities(JSON.parse(storageQty))
     }
   }, [])
+
+  useEffect(() => {
+      localStorage.setItem('items', JSON.stringify(cartItems))
+      localStorage.setItem('itemsTotalPrice', JSON.stringify(totalPrice))
+      localStorage.setItem('itemsTotalQty', JSON.stringify(totalQuantities))
+  }, [cartItems, totalQuantities, totalPrice])
 
   return (
     <Context.Provider
